@@ -1,4 +1,17 @@
-clonar
-renombrar el dir PROYECTO por xxx
-hacer el sed: find ./ -type f -exec sed -i 's/PROYECTO/my_projecto/g' {} +
-entro al container y hago el migrate y create superuser
+#### Uso:
+
+Una vez clonado ejecutamos:
+```bash
+./rename_project.sh NOMBRE
+```
+
+Se creara un repo git vacio para el proyecto.
+
+Crear los containers:
+```bash
+docker-compose up --build
+```
+
+En PROD.env debemos poner las credenciales del MySQL.
+
+
