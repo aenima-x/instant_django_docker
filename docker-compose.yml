@@ -1,0 +1,51 @@
+version: '3'
+
+services:
+  django_app:
+    build: .
+    container_name: PROYECTO
+    env_file:
+      - PROD.env
+    entrypoint: /opt/app/entrypoint.sh
+    volumes:
+      - static_volume:/opt/app/PROYECTO/staticfiles
+    networks:
+      - database_network
+      - nginx_network
+    depends_on:
+      - database
+
+  nginx:
+    image: nginx:1.13
+    container_name: PROYECTO_nginx
+    ports:
+      - 8000:80
+    volumes:
+      - ./conf/nginx/conf.d:/etc/nginx/conf.d
+      - static_volume:/opt/app/PROYECTO/staticfiles
+    depends_on:
+      - django_app
+    networks:
+      - nginx_network
+
+  database:
+    image: mysql:5.6
+    container_name: PROYECTO_database
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    env_file:
+      - PROD.env
+    networks:
+      - database_network
+    volumes:
+      - database_volume:/var/lib/mysql
+
+networks:
+  nginx_network:
+    driver: bridge
+  database_network: 
+    driver: bridge
+
+volumes:
+  database_volume:
+  static_volume:
