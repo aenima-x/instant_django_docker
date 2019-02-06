@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'PROYECTO.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 #
-if os.environ.get('PROD', '1') == '1':
+if os.environ.get('PROD', '') == '1':
     DB_NAME = os.environ.get('MYSQL_DATABASE')
     DB_USER = os.environ.get('MYSQL_USER')
     DB_PASSWORD = os.environ.get('MYSQL_PASSWORD')
