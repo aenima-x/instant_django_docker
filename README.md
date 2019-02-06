@@ -1,17 +1,22 @@
-#### Uso:
+#### How to Create a Django Project:
 
-Una vez clonado ejecutamos:
+
+Clone git repo:
 ```bash
-./rename_project.sh NOMBRE
+git clone https://github.com/aenima-x/instant_django_docker.git PROJECT_NAME
 ```
 
-Se creara un repo git vacio para el proyecto.
+Run script:
+```bash
+cd PROJECT_NAME
+./rename_project.sh PROJECT_NAME
+```
 
-Crear los containers:
+Create containers:
 ```bash
 docker-compose up --build
 ```
 
-En PROD.env debemos poner las credenciales del MySQL.
+In PROD.env put the mysql credentials.
 
 
